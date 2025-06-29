@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="keywords" content="app, landing, corporate, Creative, Html Template, Template">
+    <meta name="author" content="web-themes">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- title -->
+    <title>Text Scroll Animaton</title>
+
+    <!-- favicon -->
+    <!-- <link href="img/favicon.png" type="image/png" rel="icon"> -->
+
+    <!-- all css here -->
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  
+
+    <div class="wrapper">
+        <h1>Text Scroll Animation!</h1>
+        <div class="text_content">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</div>
+        <div class="text_content">Lorem Ipsum has been the industry's standard dummy text ever </div>
+        <div class="text_content">since the 1500s, when an unknown printer took a galley</div>
+        <div class="text_content">of type and scrambled it to make a type specimen book. It has</div>
+        <div class="text_content">urvived not only five centuries, but also the leap into el</div>
+        <div class="text_content">typesetting, remaining essentially unchanged. It was popularised</div>
+        <div class="text_content">the 1960s with the release of Letraset sheets containing </div>
+        <div class="text_content">Lorem Ipsum passages, and more recently with desktop</div>
+        <div class="text_content">publishing software like Aldus PageMaker including versions of Lorem Ipsum.</div>
+        <div class="text_content">It is a long established fact that a reader will be distracted by</div>
+        <div class="text_content">the readable content of a page when looking at its layout.</div>
+        <div class="text_content">The point of using Lorem Ipsum is that it has a more-or-less </div>
+        <div class="text_content">normal distribution of letters, as opposed to using</div>
+        <div class="text_content">Content here, content here', making it look like readable English</div>
+        <div class="text_content">Many desktop publishing packages and web page</div>
+        <div class="text_content">editors now use Lorem Ipsum as their default model text,</div>
+        <div class="text_content">and a search for 'lorem ipsum' will uncover many web sites </div>
+        <div class="text_content">still in their infancy. Various versions have evolved over the years</div>
+        <div class="text_content">sometimes by accident, sometimes on purpose</div>
+        <div class="text_content">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</div>
+        <div class="text_content">Lorem Ipsum has been the industry's standard dummy text ever </div>
+        <div class="text_content">since the 1500s, when an unknown printer took a galley</div>
+        <div class="text_content">of type and scrambled it to make a type specimen book. It has</div>
+        <div class="text_content">urvived not only five centuries, but also the leap into el</div>
+        <div class="text_content">typesetting, remaining essentially unchanged. It was popularised</div>
+        <div class="text_content">the 1960s with the release of Letraset sheets containing </div>
+        <div class="text_content">Lorem Ipsum passages, and more recently with desktop</div>
+        <div class="text_content">publishing software like Aldus PageMaker including versions of Lorem Ipsum.</div>
+        <div class="text_content">It is a long established fact that a reader will be distracted by</div>
+        <div class="text_content">the readable content of a page when looking at its layout.</div>
+        <div class="text_content">The point of using Lorem Ipsum is that it has a more-or-less </div>
+        <div class="text_content">normal distribution of letters, as opposed to using</div>
+        <div class="text_content">Content here, content here', making it look like readable English</div>
+        <div class="text_content">Many desktop publishing packages and web page</div>
+        <div class="text_content">editors now use Lorem Ipsum as their default model text,</div>
+        <div class="text_content">and a search for 'lorem ipsum' will uncover many web sites </div>
+        <div class="text_content">still in their infancy. Various versions have evolved over the years</div>
+        <div class="text_content">sometimes by accident, sometimes on purpose</div>
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        
+        window.addEventListener("scroll", () => {
+            const textContent = document.querySelectorAll(".text_content");
+            const viewportHeight = window.innerHeight;
+            const quarterHeight = viewportHeight / 4;
+            const centerY = window.scrollY + viewportHeight / 2;
+
+
+            textContent.forEach((div) => {
+                const rect = div.getBoundingClientRect();
+                const divCenterY = rect.top + rect.height / 2;
+
+                const distanceFromCenter = Math.abs(divCenterY - viewportHeight / 2);
+
+                let opacity;
+                let weight;
+                let size;
+
+
+                if (divCenterY < quarterHeight) {
+                    opacity = divCenterY - quarterHeight;
+                }else if (divCenterY > viewportHeight - quarterHeight) {
+                    opacity = (viewportHeight - divCenterY) / quarterHeight;
+                    weight = (viewportHeight - divCenterY) / quarterHeight;
+                }else {
+                    opacity = 1;
+                    weight = 100;
+                }
+
+
+                opacity = Math.max(0, Math.min(1, opacity));
+                weight = opacity * 900;
+                size = opacity + 1.7;
+                div.style.opacity = opacity;
+                div.style.fontWeight = weight;
+                div.style.fontSize = size + "vw";
+            });
+        });
+
+        window.dispatchEvent(new Event("scroll"));
+
+    </script>
+</body>
+</html>
